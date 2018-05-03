@@ -75,7 +75,7 @@ class RealWorldState extends State<RealWorldApp> {
                               Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) => new DetailsView()),
+                                    builder: (context) => new DetailsView(test: video)),
                               );
                             });
                       },
@@ -86,6 +86,10 @@ class RealWorldState extends State<RealWorldApp> {
 
 class DetailsView extends StatelessWidget{
 
+  final test;
+
+  DetailsView({Key key, this.test}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -93,7 +97,7 @@ class DetailsView extends StatelessWidget{
         appBar: new AppBar(
           title: new Text("Details Page"),
         ),
-        body: new Text("Hello")
+        body: new Text(this.test["name"])
     );
   }
 }
