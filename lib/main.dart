@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import './views/video_cell.dart';
+import './views/details.dart';
 
 void main() => runApp(new RealWorldApp());
 
@@ -84,20 +85,3 @@ class RealWorldState extends State<RealWorldApp> {
   }
 }
 
-class DetailsView extends StatelessWidget{
-
-  final test;
-
-  DetailsView({Key key, this.test}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Details Page"),
-        ),
-        body: new Text(this.test["name"])
-    );
-  }
-}
