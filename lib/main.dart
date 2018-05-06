@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 import './views/video_cell.dart';
 import './views/details.dart';
-import './views/new_post.dart';
+// import './views/new_post.dart'; 
 
 void main() => runApp(
   new MaterialApp(
@@ -40,6 +41,27 @@ class RealWorldState extends State<RealWorldApp> {
         this.videos = videosJson;
       });
     }
+  }
+
+  Future<Null> _newPost() async {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return new SimpleDialog(
+            title: const Text("New Post"),
+            titlePadding: new EdgeInsets.all(10.0),
+            children: <Widget>[
+              new TextFormField(
+                autofocus: true,
+                onFieldSubmitted: (String post) {
+                  print(post);
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        }
+      );
   }
 
   @override
@@ -88,11 +110,10 @@ class RealWorldState extends State<RealWorldApp> {
                 },
               ),
       ),
-      floatingActionButton: new RaisedButton(
+      floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => new NewPost()));
+            _newPost();
           }),
     );
   }

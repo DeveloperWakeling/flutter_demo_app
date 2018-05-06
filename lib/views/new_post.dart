@@ -6,20 +6,17 @@ class NewPost extends StatelessWidget {
 
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Column(
-      children: <Widget>[
-        new Container(
-          padding: new EdgeInsets.all(16.0),
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Container(height: 8.0),
-              new Text("HELLO WORLD")
-            ],
-          ),
-        ),
-        new Divider()
-      ],
+    return new Dialog(
+      child: new Column(
+        children: <Widget>[
+          new SimpleDialogOption(
+            child: new Text("Testing"),
+            onPressed: () {
+              print("Pressed");
+            }
+          )
+        ],
+      ),
     );
   }
 }
