@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
 
-// class NewPost extends StatefulWidget {
-//   NewPost({Key key}) : super(key: key);
-//   @override
-//   createState() => new NewPostState();
-// }
-
-// class NewPostState extends State<NewPost> {
-  class NewPost extends StatelessWidget{
+class NewPost extends StatelessWidget {
 
   @override
+
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("New Post"),
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.done),
-            onPressed: () {
-              print("Nothing for now");
-            },
-          )
-        ],
-      ),
-      body: new Center(child: new Text("Hello There")),
+    return new Column(
+      children: <Widget>[
+        new Container(
+          padding: new EdgeInsets.all(16.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Container(height: 8.0),
+              new Text("HELLO WORLD")
+            ],
+          ),
+        ),
+        new Divider()
+      ],
     );
   }
 }

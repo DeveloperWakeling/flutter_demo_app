@@ -3,8 +3,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import './views/video_cell.dart';
 import './views/details.dart';
+import './views/new_post.dart';
 
-void main() => runApp(new RealWorldApp());
+void main() => runApp(
+  new MaterialApp(
+    title: "Navigation Please Fucking Work",
+    home: new RealWorldApp(),
+  )
+);
 
 class RealWorldApp extends StatefulWidget {
   @override
@@ -46,42 +52,48 @@ class RealWorldState extends State<RealWorldApp> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new MaterialApp(
-        home: new Scaffold(
-            appBar: new AppBar(
-              title: new Text("Real World App Bar"),
-              actions: <Widget>[
-                new IconButton(
-                  icon: new Icon(Icons.refresh),
-                  onPressed: () {
-                    setState(() {
-                      _isLoading = true;
-                    });
-                    _fetchData();
-                  },
-                )
-              ],
-            ),
-            body: new Center(
-              child: _isLoading
-                  ? new CircularProgressIndicator()
-                  : new ListView.builder(
-                      itemCount: this.videos != null ? this.videos.length : 0,
-                      itemBuilder: (context, i) {
-                        final video = this.videos[i];
-                        return new FlatButton(
-                            padding: new EdgeInsets.all(0.0),
-                            child: new VideoCell(video),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new DetailsView(test: video)),
-                              );
-                            });
-                      },
-                    ),
-            )));
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Real World App Bar"),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                _isLoading = true;
+              });
+              _fetchData();
+            },
+          )
+        ],
+      ),
+      body: new Center(
+        child: _isLoading
+            ? new CircularProgressIndicator()
+            : new ListView.builder(
+                itemCount: this.videos != null ? this.videos.length : 0,
+                itemBuilder: (context, i) {
+                  final video = this.videos[i];
+                  return new FlatButton(
+                      padding: new EdgeInsets.all(0.0),
+                      child: new VideoCell(video),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) =>
+                                  new DetailsView(test: video)),
+                        );
+                      });
+                },
+              ),
+      ),
+      floatingActionButton: new RaisedButton(
+          child: new Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context,
+                new MaterialPageRoute(builder: (context) => new NewPost()));
+          }),
+    );
   }
 }
-
