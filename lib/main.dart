@@ -8,7 +8,7 @@ import './views/details.dart';
 
 void main() => runApp(
   new MaterialApp(
-    title: "Navigation Please Fucking Work",
+    title: "Navigation",
     home: new RealWorldApp(),
   )
 );
